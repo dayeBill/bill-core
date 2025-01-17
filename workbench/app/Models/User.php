@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use RedJasmine\Support\Contracts\UserInterface;
 
-class User extends Authenticatable
+class User extends Authenticatable implements UserInterface
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,6 +41,27 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password'          => 'hashed',
     ];
+
+
+    public function getType() : string
+    {
+        return 'user';
+    }
+
+    public function getID() : int
+    {
+        return $this->getKey();
+    }
+
+    public function getNickname() : ?string
+    {
+        return $this->name;
+    }
+
+    public function getAvatar() : ?string
+    {
+        return null;
+    }
 }

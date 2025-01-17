@@ -4,7 +4,7 @@ namespace DayeBill\BillCore\UI\Http\Resources;
 
 use DayeBill\BillCore\Domain\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use RedJasmine\Support\UI\Http\Resources\Json\JsonResource;
 
 /** @mixin Contact */
 class ContactResource extends JsonResource

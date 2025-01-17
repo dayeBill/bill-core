@@ -2,21 +2,30 @@
 
 namespace DayeBill\BillCore\UI\Http\Controllers;
 
+use DayeBill\BillCore\Application\Services\Bill\BillQueryService;
 use DayeBill\BillCore\Domain\Models\Bill;
 use DayeBill\BillCore\UI\Http\Requests\BillRequest;
 use DayeBill\BillCore\UI\Http\Resources\BillResource;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+use RedJasmine\Support\Domain\Data\Queries\PaginateQuery;
+use RedJasmine\Support\Http\Controllers\Controller;
 use function DayeBill\BillCore\Http\Controllers\response;
 
-class BillController
+class BillController extends Controller
 {
-    use AuthorizesRequests;
+    public function __construct(
+        protected BillQueryService $queryService
+    ) {
+        $this->queryService->getRepository()->withQuery(function ($query) {
+            $query->onlyBuyer($this->getOwner());
+        });
+    }
 
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Bill::class);
-
-        return BillResource::collection(Bill::all());
+        $result = $this->queryService->paginate(PaginateQuery::from($request->query()));
+        return BillResource::collection($result->appends($request->query()));
     }
 
     public function store(BillRequest $request)

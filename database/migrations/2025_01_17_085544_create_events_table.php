@@ -9,11 +9,12 @@ return new class extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
-            $table->string('owner_type');
-            $table->string('owner_id');
+            $table->string('owner_type',32);
+            $table->string('owner_id',64);
+            $table->index(['owner_id','owner_type',],'idx_owner');
             $table->string('type');
             $table->string('subject');
-            $table->date('event_date');
+            $table->date('event_date')->nullable();
             $table->bigInteger('amount')->default(0);
             $table->timestamps();
             $table->softDeletes();

@@ -17,7 +17,7 @@ class BillRequest
             'payee_id'        => ['nullable'],
             'pay_method'      => ['nullable'],
             'amount_value'    => ['required', 'integer'],
-            'bill_date'       => ['required', 'date'],
+            'bill_time'       => ['required', 'date'],
             'remarks'         => ['nullable'],
         ];
     }

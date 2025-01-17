@@ -2,13 +2,16 @@
 
 namespace DayeBill\BillCore\Domain\Models;
 
-use DayeBill\BillCore\Domain\Models\Enums\ContactRelationTypeEnum;
+
+use DayeBill\BillCore\Domain\Events\Contacts\ContactCreatedEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use RedJasmine\Support\Domain\Models\OwnerInterface;
+use RedJasmine\Support\Domain\Models\Traits\HasOwner;
 use RedJasmine\Support\Domain\Models\Traits\HasSnowflakeId;
 
-class Contact extends Model
+class Contact extends Model implements OwnerInterface
 {
     use HasFactory, SoftDeletes;
 
@@ -17,6 +20,12 @@ class Contact extends Model
     public $uniqueShortId = true;
 
     use HasSnowflakeId;
+
+    use HasOwner;
+
+    protected $dispatchesEvents = [
+        'created' => ContactCreatedEvent::class,
+    ];
 
     protected $fillable = [
         'owner_type',
@@ -30,7 +39,7 @@ class Contact extends Model
     protected function casts() : array
     {
         return [
-            'relation_type' => ContactRelationTypeEnum::class
+
         ];
     }
 }

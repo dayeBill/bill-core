@@ -8,7 +8,8 @@ enum ContactRelationTypeEnum: string
 {
     use EnumsHelper;
 
-    // 同学、朋友、同事、领导、其他
+    // 同学、朋友、同事、领导、其他、亲戚
+    case RELATIVE = 'relative';
     case CLASSMATE = 'classmate';
     case FRIEND = 'friend';
     case COLLEAGUE = 'colleague';
@@ -22,6 +23,7 @@ enum ContactRelationTypeEnum: string
             self::FRIEND->value    => '朋友',
             self::COLLEAGUE->value => '同事',
             self::LEADER->value    => '领导',
+            self::RELATIVE->value  => '亲戚',
             self::OTHER->value     => '其他',
         ];
     }

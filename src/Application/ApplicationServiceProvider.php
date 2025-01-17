@@ -6,6 +6,8 @@ use DayeBill\BillCore\Domain\Repositories\BillReadRepositoryInterface;
 use DayeBill\BillCore\Domain\Repositories\BillRepositoryInterface;
 use DayeBill\BillCore\Domain\Repositories\ContactReadRepositoryInterface;
 use DayeBill\BillCore\Domain\Repositories\ContactRepositoryInterface;
+use DayeBill\BillCore\Domain\Repositories\EventReadRepositoryInterface;
+use DayeBill\BillCore\Domain\Repositories\EventRepositoryInterface;
 use DayeBill\BillCore\Infrastructure\ReadRepositories\Mysql\BillReadRepository;
 use DayeBill\BillCore\Infrastructure\ReadRepositories\Mysql\ContactReadRepository;
 use DayeBill\BillCore\Infrastructure\ReadRepositories\Mysql\EventReadRepository;

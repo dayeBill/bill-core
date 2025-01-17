@@ -1,7 +1,9 @@
 laravel: '@testbench'
 
 providers:
-   - Workbench\App\Providers\WorkbenchServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
+  - DayeBill\BillCore\PackageServiceProvider
+  - DayeBill\BillCore\Application\ApplicationServiceProvider
 
 migrations:
   - workbench/database/migrations
@@ -15,7 +17,7 @@ workbench:
   health: false
   discovers:
     web: true
-    api: false
+    api: true
     commands: false
     components: false
     views: false

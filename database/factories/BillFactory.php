@@ -23,7 +23,7 @@ class BillFactory extends Factory
             'payee_id'        => $this->faker->word(),
             'pay_method'      => $this->faker->word(),
             'amount_value'    => $this->faker->randomNumber(),
-            'bill_date'       => Carbon::now(),
+            'bill_time'       => Carbon::now(),
             'remarks'         => $this->faker->word(),
             'created_at'      => Carbon::now(),
             'updated_at'      => Carbon::now(),

@@ -42,4 +42,10 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+
+}
+
+function owner()
+{
+    return \Illuminate\Support\Facades\Auth::user();
 }

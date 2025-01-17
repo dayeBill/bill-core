@@ -5,7 +5,11 @@ namespace DayeBill\BillCore\Application\Services\Event;
 use DayeBill\BillCore\Domain\Models\Event;
 use DayeBill\BillCore\Domain\Repositories\EventRepositoryInterface;
 use RedJasmine\Support\Application\ApplicationCommandService;
+use RedJasmine\Support\Data\Data;
 
+/**
+ * @method Event create(Data $command)
+ */
 class EventCommandService extends ApplicationCommandService
 {
 

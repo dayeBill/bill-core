@@ -8,6 +8,9 @@ use RedJasmine\Support\Infrastructure\ReadRepositories\QueryBuilderReadRepositor
 
 class BillReadRepository extends QueryBuilderReadRepository implements BillReadRepositoryInterface
 {
-    public $modelClass = Bill::class;
+    /**
+     * @var $modelClass class-string
+     */
+    protected static string $modelClass = Bill::class;
 
 }

@@ -2,40 +2,43 @@
 
 namespace DayeBill\BillCore\Policies;
 
-use App\User;
+
 use DayeBill\BillCore\Domain\Models\Bill;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use RedJasmine\Support\Contracts\UserInterface;
 
 class BillPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(UserInterface $user)
     {
+
+        return true;
 
     }
 
-    public function view(User $user, Bill $bill)
+    public function view(UserInterface $user, Bill $bill)
     {
     }
 
-    public function create(User $user)
+    public function create(UserInterface $user)
     {
     }
 
-    public function update(User $user, Bill $bill)
+    public function update(UserInterface $user, Bill $bill)
     {
     }
 
-    public function delete(User $user, Bill $bill)
+    public function delete(UserInterface $user, Bill $bill)
     {
     }
 
-    public function restore(User $user, Bill $bill)
+    public function restore(UserInterface $user, Bill $bill)
     {
     }
 
-    public function forceDelete(User $user, Bill $bill)
+    public function forceDelete(UserInterface $user, Bill $bill)
     {
     }
 }

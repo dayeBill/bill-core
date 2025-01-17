@@ -4,7 +4,7 @@ namespace DayeBill\BillCore\UI\Http\Resources;
 
 use DayeBill\BillCore\Domain\Models\Event;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use RedJasmine\Support\UI\Http\Resources\Json\JsonResource;
 
 /** @mixin Event */
 class EventResource extends JsonResource
