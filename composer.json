@@ -1,0 +1,54 @@
+{
+    "name": "daye-bill/bill-core",
+    "description": "BillCore",
+    "require": {
+        "php": "^8.3",
+        "red-jasmine/support": "^1.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "DayeBill\\BillCore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "liushoukun",
+            "email": "liushoukun66@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "pestphp/pest": "^2.30",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "brianium/paratest": "^7.3",
+        "orchestra/testbench": "9.x-dev"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DayeBill\\BillCore\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
