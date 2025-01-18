@@ -2,7 +2,9 @@
 
 namespace DayeBill\BillCore\UI\Http\Requests;
 
-class BillRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class BillRequest extends FormRequest
 {
     public function rules()
     {

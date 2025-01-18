@@ -2,16 +2,18 @@
 
 namespace DayeBill\BillCore\UI\Http\Requests;
 
-class EventRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class EventRequest extends FormRequest
 {
     public function rules()
     {
         return [
-            'owner_type' => ['required'],
-            'owner_id'   => ['required'],
+
+            'type'       => ['required'],
             'subject'    => ['required'],
             'event_date' => ['required', 'date'],
-            'amount'     => ['required', 'integer'],
+
         ];
     }
 

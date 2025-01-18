@@ -5,37 +5,44 @@ namespace DayeBill\BillCore\Policies;
 use App\User;
 use DayeBill\BillCore\Domain\Models\Event;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use RedJasmine\Support\Contracts\UserInterface;
 
 class EventPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(UserInterface $user)
     {
-
+        return true;
     }
 
-    public function view(User $user, Event $event)
+    public function view(UserInterface $user, Event $event)
     {
+        return true;
     }
 
-    public function create(User $user)
+    public function create(UserInterface $user)
     {
+        return true;
     }
 
-    public function update(User $user, Event $event)
+    public function update(UserInterface $user, Event $event)
     {
+        return true;
     }
 
-    public function delete(User $user, Event $event)
+    public function delete(UserInterface $user, Event $event)
     {
+        return true;
     }
 
-    public function restore(User $user, Event $event)
+    public function restore(UserInterface $user, Event $event)
     {
+        return true;
     }
 
-    public function forceDelete(User $user, Event $event)
+    public function forceDelete(UserInterface $user, Event $event)
     {
+        return true;
     }
 }

@@ -2,17 +2,18 @@
 
 namespace DayeBill\BillCore\UI\Http\Requests;
 
-class ContactRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class ContactRequest extends FormRequest
 {
-    public function rules()
+    public function rules() : array
     {
         return [
-            'owner_type'    => ['required'],
-            'owner_id'      => ['required'],
+
             'name'          => ['required'],
             'relation_type' => ['nullable'],
             'phone_number'  => ['nullable'],
-            'remarks'       => ['required'],
+            'remarks'       => ['nullable'],
         ];
     }
 

@@ -2,52 +2,46 @@
 
 namespace DayeBill\BillCore\UI\Http\Controllers;
 
-use DayeBill\BillCore\Domain\Models\Event;
-use DayeBill\BillCore\UI\Http\Requests\EventRequest;
-use DayeBill\BillCore\UI\Http\Resources\EventResource;
+use DayeBill\BillCore\Application\Services\Event\EventCommandService;
+use DayeBill\BillCore\Application\Services\Event\EventQueryService;
+use DayeBill\BillCore\Domain\Data\EventData as Data;
+use DayeBill\BillCore\Domain\Models\Event as Model;
+use DayeBill\BillCore\UI\Http\Requests\EventRequest as Request;
+use DayeBill\BillCore\UI\Http\Resources\EventResource as Resource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use RedJasmine\Support\Http\Controllers\Controller;
+use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
 use function DayeBill\BillCore\Http\Controllers\response;
 
-class EventController
+class EventController extends Controller
 {
     use AuthorizesRequests;
 
-    public function index()
-    {
-        $this->authorize('viewAny', Event::class);
 
-        return EventResource::collection(Event::all());
+    public function __construct(
+        protected EventQueryService $queryService,
+        protected EventCommandService $commandService,
+    ) {
+        $this->queryService->getRepository()->withQuery(function ($query) {
+            $query->onlyOwner($this->getOwner());
+        });
     }
 
-    public function store(EventRequest $request)
-    {
-        $this->authorize('create', Event::class);
-
-        return new EventResource(Event::create($request->validated()));
+    protected static string $modelClass    = Model::class;
+    protected static string $resourceClass = Resource::class;
+    protected static string $dataClass     = Data::class;
+    use RestControllerActions {
+        store as coreStore;
+        update as coreUpdate;
     }
 
-    public function show(Event $event)
+    public function store(Request $request)
     {
-        $this->authorize('view', $event);
-
-        return new EventResource($event);
+        return $this->coreStore($request);
     }
 
-    public function update(EventRequest $request, Event $event)
+    public function update($id, Request $request)
     {
-        $this->authorize('update', $event);
-
-        $event->update($request->validated());
-
-        return new EventResource($event);
-    }
-
-    public function destroy(Event $event)
-    {
-        $this->authorize('delete', $event);
-
-        $event->delete();
-
-        return response()->json();
+        return $this->coreUpdate($id, $request);
     }
 }

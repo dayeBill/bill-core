@@ -2,52 +2,47 @@
 
 namespace DayeBill\BillCore\UI\Http\Controllers;
 
-use DayeBill\BillCore\Domain\Models\Contact;
-use DayeBill\BillCore\UI\Http\Requests\ContactRequest;
-use DayeBill\BillCore\UI\Http\Resources\ContactResource;
+use DayeBill\BillCore\Application\Services\Contact\ContactCommandService;
+use DayeBill\BillCore\Application\Services\Contact\ContactQueryService;
+use DayeBill\BillCore\Domain\Data\ContactData as Data;
+use DayeBill\BillCore\Domain\Models\Contact as Model;
+use DayeBill\BillCore\UI\Http\Requests\ContactRequest as Request;
+use DayeBill\BillCore\UI\Http\Resources\ContactResource as Resource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use RedJasmine\Support\Http\Controllers\Controller;
+use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
 
 
-class ContactController
+class ContactController extends Controller
 {
+    public function __construct(
+        protected ContactQueryService $queryService,
+        protected ContactCommandService $commandService,
+    ) {
+        $this->queryService->getRepository()->withQuery(function ($query) {
+            $query->onlyOwner($this->getOwner());
+        });
+    }
+
     use AuthorizesRequests;
 
-    public function index()
-    {
-        $this->authorize('viewAny', Contact::class);
 
-        return ContactResource::collection(Contact::all());
+    protected static string $modelClass    = Model::class;
+    protected static string $resourceClass = Resource::class;
+    protected static string $dataClass     = Data::class;
+    use RestControllerActions {
+        store as coreStore;
+        update as coreUpdate;
     }
 
-    public function store(ContactRequest $request)
+    public function store(Request $request)
     {
-        $this->authorize('create', Contact::class);
-
-        return new ContactResource(Contact::create($request->validated()));
+        return $this->coreStore($request);
     }
 
-    public function show(Contact $contact)
+    public function update($id, Request $request)
     {
-        $this->authorize('view', $contact);
-
-        return new ContactResource($contact);
+        return $this->coreUpdate($id, $request);
     }
 
-    public function update(ContactRequest $request, Contact $contact)
-    {
-        $this->authorize('update', $contact);
-
-        $contact->update($request->validated());
-
-        return new ContactResource($contact);
-    }
-
-    public function destroy(Contact $contact)
-    {
-        $this->authorize('delete', $contact);
-
-        $contact->delete();
-
-        return response()->json();
-    }
 }

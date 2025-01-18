@@ -39,6 +39,7 @@ class Contact extends Model implements OwnerInterface
     protected function casts() : array
     {
         return [
+            'phone_number' => 'encrypted'
 
         ];
     }
