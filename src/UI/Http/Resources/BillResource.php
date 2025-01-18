@@ -9,8 +9,9 @@ use RedJasmine\Support\UI\Http\Resources\Json\JsonResource;
 /** @mixin Bill */
 class BillResource extends JsonResource
 {
-    public function toArray(Request $request)
+    public function toArray(Request $request) : array
     {
+
         return [
             'id'              => $this->id,
             'owner_type'      => $this->owner_type,
@@ -23,10 +24,12 @@ class BillResource extends JsonResource
             'payee_type'      => $this->payee_type,
             'payee_id'        => $this->payee_id,
             'pay_method'      => $this->pay_method,
-            'bill_time'       => $this->bill_time,
+            'bill_time'       => $this->bill_time?->format('Y-m-d H:i:s'),
             'remarks'         => $this->remarks,
-            'created_at'      => $this->created_at,
-            'updated_at'      => $this->updated_at,
+            'created_at'      => $this->created_at?->format('Y-m-d H:i:s'),
+            'updated_at'      => $this->updated_at?->format('Y-m-d H:i:s'),
+            'contact'         => ContactResource::make($this->whenLoaded('contact')),
+            'event'           => EventResource::make($this->whenLoaded('event')),
         ];
     }
 }

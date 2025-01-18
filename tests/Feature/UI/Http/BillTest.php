@@ -9,9 +9,8 @@ test('can query bills', function () {
      */
     $response = $this->get('/api/bills');
 
-
+    $response->dump();
     $response->assertStatus(200)->assertJson(['code' => 0]);
 
-    $response->dump();
 
 });
