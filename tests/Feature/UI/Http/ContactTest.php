@@ -15,7 +15,7 @@ test('can create a contact', function () {
         'phone_number'  => fake()->phoneNumber(),
         'remarks'       => fake()->text()
     ]);
-    $response->dump();
+
     $response->assertStatus(201)->assertJson(['code' => 0]);
     $id = $response->json('data.0.id');
 
@@ -29,7 +29,7 @@ test('can query contacts', function () {
      */
     $response = $this->get('/api/contacts');
 
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
 
     $id = $response->json('data.0.id');
@@ -44,7 +44,7 @@ test('can detail a contact', function ($id) {
      */
     $response = $this->get('/api/contacts/'.$id);
 
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
 
     $id = $response->json('data.id');
@@ -63,7 +63,7 @@ test('can update a contact', function ($id) {
         'phone_number'  => fake()->phoneNumber(),
         'remarks'       => fake()->text()
     ]);
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
     $id = $response->json('data.0.id');
 
@@ -76,7 +76,7 @@ test('can delete a contact', function ($id) {
      * @var TestResponse $response
      */
     $response = $this->delete('/api/contacts/'.$id);
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
 
 })->depends('can query contacts');

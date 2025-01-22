@@ -14,7 +14,7 @@ test('can create a event', function () {
         'subject'    => fake()->word(),
         'event_date' => fake()->date()
     ]);
-    $response->dump();
+
     $response->assertStatus(201)->assertJson(['code' => 0]);
     $id = $response->json('data.0.id');
 
@@ -28,7 +28,7 @@ test('can query events', function () {
      */
     $response = $this->get('/api/events');
 
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
 
     $id = $response->json('data.0.id');
@@ -43,7 +43,7 @@ test('can detail a event', function ($id) {
      */
     $response = $this->get('/api/events/'.$id);
 
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
 
     $id = $response->json('data.id');
@@ -61,7 +61,7 @@ test('can update a event', function ($id) {
         'subject'    => fake()->word(),
         'event_date' => fake()->date()
     ]);
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
     $id = $response->json('data.0.id');
 
@@ -74,7 +74,7 @@ test('can delete a event', function ($id) {
      * @var TestResponse $response
      */
     $response = $this->delete('/api/events/'.$id);
-    $response->dump();
+
     $response->assertStatus(200)->assertJson(['code' => 0]);
 
 })->depends('can query events');

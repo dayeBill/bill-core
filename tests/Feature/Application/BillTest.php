@@ -36,6 +36,7 @@ test('can create a bill', function () {
 
     $bill = $this->commandService->create($command);
 
+    $this->assertEquals($command->billType->value, $bill->bill_type->value);
 
 
 });
