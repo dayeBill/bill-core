@@ -59,6 +59,12 @@
         }
     },
     "extra": {
+        "laravel": {
+            "providers": [
+                "DayeBill\\BillCore\\PackageServiceProvider",
+                "DayeBill\\BillCore\\Application\\ApplicationServiceProvider"
+            ]
+        },
         "branch-alias": {
             "dev-master": "1.0.x-dev",
             "dev-main": "1.0.x-dev"
