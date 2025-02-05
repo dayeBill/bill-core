@@ -3,7 +3,7 @@
     "description": "BillCore",
     "require": {
         "php": "^8.3",
-        "red-jasmine/support": "^1.0@dev"
+        "red-jasmine/support": "1.0.x-dev"
     },
     "autoload": {
         "psr-4": {
