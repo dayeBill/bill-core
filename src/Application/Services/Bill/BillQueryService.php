@@ -2,10 +2,10 @@
 
 namespace DayeBill\BillCore\Application\Services\Bill;
 
+use DayeBill\BillCore\Application\Services\Bill\Queries\BillPaginateQuery;
 use DayeBill\BillCore\Domain\Repositories\BillReadRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use RedJasmine\Support\Application\ApplicationQueryService;
-use RedJasmine\Support\Domain\Data\Queries\PaginateQuery;
 use Spatie\QueryBuilder\AllowedFilter;
 
 class BillQueryService extends ApplicationQueryService
@@ -19,8 +19,9 @@ class BillQueryService extends ApplicationQueryService
     }
 
 
-    public function paginate(PaginateQuery $query) : LengthAwarePaginator
+    public function paginate(BillPaginateQuery $query) : LengthAwarePaginator
     {
+
         $query->include = ['event', 'contact'];
 
         return $this->getRepository()->paginate($query);
@@ -33,6 +34,8 @@ class BillQueryService extends ApplicationQueryService
             AllowedFilter::exact('owner_type'),
             AllowedFilter::exact('owner_id'),
             AllowedFilter::exact('event_id'),
+            AllowedFilter::exact('contact_id'),
+            AllowedFilter::exact('bill_type'),
 
         ];
     }

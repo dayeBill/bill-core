@@ -28,10 +28,10 @@ class ContactController extends Controller
     use AuthorizesRequests;
 
 
-    protected static string $modelClass      = Model::class;
-    protected static string $resourceClass   = Resource::class;
-    protected static string $dataClass       = Data::class;
-    protected static string $createDataClass = ContactCreateCommand::class;
+    protected static string $modelClass         = Model::class;
+    protected static string $resourceClass      = Resource::class;
+    protected static string $dataClass          = Data::class;
+    protected static string $createCommandClass = ContactCreateCommand::class;
     use RestControllerActions {
         store as coreStore;
         update as coreUpdate;
