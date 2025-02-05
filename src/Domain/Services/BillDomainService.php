@@ -34,7 +34,7 @@ class BillDomainService
             throw new ContactException('联系人不存在', 114401);
         }
         // 查询事件
-        if (isset($data->eventId) && !$this->contactReadRepository->findByIdInOwner($data->owner, $data->eventId)) {
+        if (isset($data->eventId) && !$this->eventReadRepository->findByIdInOwner($data->owner, $data->eventId)) {
             throw new ContactException('事件不存在', 204401);
         }
 
