@@ -5,6 +5,8 @@ namespace DayeBill\BillCore\Application\Services\Bill\Commands;
 use DayeBill\BillCore\Application\Services\Bill\BillCommandService;
 use DayeBill\BillCore\Domain\Data\ContactData;
 use DayeBill\BillCore\Domain\Models\Bill;
+use DayeBill\BillCore\Domain\Repositories\ContactReadRepositoryInterface;
+use DayeBill\BillCore\Domain\Repositories\ContactRepositoryInterface;
 use DayeBill\BillCore\Domain\Services\BillDomainService;
 use DayeBill\BillCore\Domain\Services\ContactDomainService;
 use RedJasmine\Support\Application\CommandHandler;
@@ -16,8 +18,7 @@ class BillCreateCommandHandler extends CommandHandler
         protected BillCommandService $service,
         protected BillDomainService $billDomainService,
         protected ContactDomainService $contactDomainService,
-
-
+        public ContactReadRepositoryInterface $contactReadRepository
     ) {
     }
 
@@ -50,6 +51,13 @@ class BillCreateCommandHandler extends CommandHandler
         if (!isset($command->contact)) {
             return;
         }
+
+        if ($contact = $this->contactReadRepository->findByNameInOwner($command->owner, $command->contact->name)) {
+            $command->contactId = $contact->id;
+            return;
+        }
+
+
         $contactCreateCommand               = new ContactData();
         $contactCreateCommand->owner        = $command->owner;
         $contactCreateCommand->name         = $command->contact->name;

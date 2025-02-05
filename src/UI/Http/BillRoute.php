@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 class BillRoute
 {
 
-    public static function route()
+    public static function route():void
     {
 
         Route::resource('bills', BillController::class)->names('bill.bills');

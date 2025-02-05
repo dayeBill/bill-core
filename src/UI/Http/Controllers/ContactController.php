@@ -2,6 +2,7 @@
 
 namespace DayeBill\BillCore\UI\Http\Controllers;
 
+use DayeBill\BillCore\Application\Services\Contact\Commands\ContactCreateCommand;
 use DayeBill\BillCore\Application\Services\Contact\ContactCommandService;
 use DayeBill\BillCore\Application\Services\Contact\ContactQueryService;
 use DayeBill\BillCore\Domain\Data\ContactData as Data;
@@ -27,9 +28,10 @@ class ContactController extends Controller
     use AuthorizesRequests;
 
 
-    protected static string $modelClass    = Model::class;
-    protected static string $resourceClass = Resource::class;
-    protected static string $dataClass     = Data::class;
+    protected static string $modelClass      = Model::class;
+    protected static string $resourceClass   = Resource::class;
+    protected static string $dataClass       = Data::class;
+    protected static string $createDataClass = ContactCreateCommand::class;
     use RestControllerActions {
         store as coreStore;
         update as coreUpdate;

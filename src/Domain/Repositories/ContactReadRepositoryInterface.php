@@ -11,4 +11,6 @@ interface ContactReadRepositoryInterface extends ReadRepositoryInterface
 
     public function findByIdInOwner(UserInterface $owner, int $id) : ?Model;
 
+    public function findByNameInOwner(UserInterface $owner, string $name) : ?Model;
+
 }

@@ -6,6 +6,7 @@ use DayeBill\BillCore\Application\Services\Bill\Commands\BillCreateCommandHandle
 use DayeBill\BillCore\Domain\Models\Bill;
 use DayeBill\BillCore\Domain\Repositories\BillRepositoryInterface;
 use RedJasmine\Support\Application\ApplicationCommandService;
+use RedJasmine\Support\Application\CommandHandlers\DeleteCommandHandler;
 
 /**
  * @see BillCreateCommandHandler::handle()
@@ -25,6 +26,7 @@ class BillCommandService extends ApplicationCommandService
 
     protected static $macros = [
         'create' => BillCreateCommandHandler::class,
+        'delete' => DeleteCommandHandler::class
     ];
 
 

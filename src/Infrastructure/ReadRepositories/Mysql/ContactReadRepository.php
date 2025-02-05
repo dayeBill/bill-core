@@ -24,5 +24,14 @@ class ContactReadRepository extends QueryBuilderReadRepository implements Contac
         ])->where('id', $id)->first();
     }
 
+    public function findByNameInOwner(UserInterface $owner, string $name) : ?Model
+    {
+        return $this->query(null)->where([
+            'owner_type' => $owner->getType(),
+            'owner_id'   => (string) $owner->getId(),
+        ])->where('name', $name)->first();
+
+    }
+
 
 }

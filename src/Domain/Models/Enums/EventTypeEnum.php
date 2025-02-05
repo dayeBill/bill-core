@@ -25,7 +25,7 @@ enum EventTypeEnum: string
             self::DEATH->value        => '丧宴',
             self::GRADUATE->value     => '升学宴',
             self::FULL_MOON->value    => '满月酒',
-            self::HOUSEWARMING->value => '乔迁就',
+            self::HOUSEWARMING->value => '乔迁',
             self::OTHER->value        => '其他',
         ];
 

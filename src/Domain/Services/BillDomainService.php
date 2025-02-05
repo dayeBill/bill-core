@@ -14,7 +14,6 @@ class BillDomainService
 
     public function __construct(
         protected EventReadRepositoryInterface $eventReadRepository,
-
         protected ContactReadRepositoryInterface $contactReadRepository,
 
     ) {

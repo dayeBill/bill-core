@@ -5,17 +5,24 @@ namespace DayeBill\BillCore\Domain\Data;
 use DayeBill\BillCore\Domain\Models\Enums\BillTypeEnum;
 use Illuminate\Support\Carbon;
 use RedJasmine\Support\Contracts\UserInterface;
+use RedJasmine\Support\Data\Data;
 use RedJasmine\Support\Domain\Models\ValueObjects\Money;
 use Spatie\LaravelData\Attributes\Validation\Max;
-use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Attributes\WithCast;
+use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
+use Spatie\LaravelData\Casts\EnumCast;
 
 class BillData extends Data
 {
     public UserInterface $owner;
 
+    #[WithCast(EnumCast::class, BillTypeEnum::class)]
     public BillTypeEnum $billType;
-    public Carbon       $billTime;
-    public Money        $amount;
+
+    #[WithCast(DateTimeInterfaceCast::class, 'Y-m-d H:i:s')]
+    public Carbon $billTime;
+
+    public Money  $amount;
 
     public ?int $eventId;
     public ?int $contactId;
