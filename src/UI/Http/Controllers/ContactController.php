@@ -7,6 +7,7 @@ use DayeBill\BillCore\Application\Services\Contact\ContactCommandService;
 use DayeBill\BillCore\Application\Services\Contact\ContactQueryService;
 use DayeBill\BillCore\Domain\Data\ContactData as Data;
 use DayeBill\BillCore\Domain\Models\Contact as Model;
+use DayeBill\BillCore\Domain\Models\Enums\ContactRelationTypeEnum;
 use DayeBill\BillCore\UI\Http\Requests\ContactRequest as Request;
 use DayeBill\BillCore\UI\Http\Resources\ContactResource as Resource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -45,6 +46,13 @@ class ContactController extends Controller
     public function update($id, Request $request)
     {
         return $this->coreUpdate($id, $request);
+    }
+
+    public function options()
+    {
+        $data                  = [];
+        $data['relationTypes'] = ContactRelationTypeEnum::lists();
+        return static::success($data);
     }
 
 }
