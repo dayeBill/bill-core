@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('type');
             $table->string('subject');
             $table->date('event_date')->nullable();
-            $table->bigInteger('amount')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
