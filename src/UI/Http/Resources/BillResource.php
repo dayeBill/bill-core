@@ -19,6 +19,7 @@ class BillResource extends JsonResource
             'event_id'        => $this->event_id,
             'contact_id'      => $this->contact_id,
             'bill_type'       => $this->bill_type->value,
+            'bill_category'   => $this->bill_category,
             'amount_currency' => $this->amount_currency,
             'amount_value'    => $this->amount_value,
             'payee_type'      => $this->payee_type,

@@ -10,6 +10,7 @@ use DayeBill\BillCore\Domain\Data\BillData as Data;
 use DayeBill\BillCore\Domain\Models\Bill as Model;
 use DayeBill\BillCore\UI\Http\Requests\BillRequest as Request;
 use DayeBill\BillCore\UI\Http\Resources\BillResource as Resource;
+use Illuminate\Support\Facades\Config;
 use RedJasmine\Support\Http\Controllers\Controller;
 use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
 use function DayeBill\BillCore\Http\Controllers\response;
@@ -46,5 +47,15 @@ class BillController extends Controller
     public function update($id, Request $request)
     {
         return $this->coreUpdate($id, $request);
+    }
+
+
+    public function options(\Illuminate\Http\Request $request)
+    {
+
+        $data               = [];
+        $data['categories'] = Config::get('bill-core.categories', []);
+
+        return static::success($data);
     }
 }

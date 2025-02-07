@@ -33,6 +33,7 @@ class Bill extends Model implements OwnerInterface
         'owner_type',
         'owner_id',
         'event_id',
+        'category',
         'contacts_id',
         'bill_type',
         'amount_currency',

@@ -21,8 +21,12 @@ class BillData extends Data
 
     #[WithCast(DateTimeInterfaceCast::class, 'Y-m-d H:i:s')]
     public Carbon $billTime;
-
     public Money  $amount;
+    /**
+     * 账单分类
+     * @var string|null
+     */
+    public ?string $billCategory;
 
     public ?int $eventId;
     public ?int $contactId;

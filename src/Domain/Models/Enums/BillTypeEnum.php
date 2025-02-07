@@ -13,17 +13,12 @@ enum BillTypeEnum: string
 
     case INCOME = 'income'; //
     case EXPENSE = 'expense';
-    case RECEIVE_GIFT = 'receive_gift';
-    case GIVE_GIFT = 'give_gift';
 
     public static function labels() : array
     {
         return [
-
-            self::RECEIVE_GIFT->value => '收礼',
-            self::GIVE_GIFT->value    => '送礼',
-            self::INCOME->value       => '收入',
-            self::EXPENSE->value      => '支出',
+            self::INCOME->value  => '收入',
+            self::EXPENSE->value => '支出',
         ];
     }
 

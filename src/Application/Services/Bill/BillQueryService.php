@@ -36,6 +36,7 @@ class BillQueryService extends ApplicationQueryService
             AllowedFilter::exact('event_id'),
             AllowedFilter::exact('contact_id'),
             AllowedFilter::exact('bill_type'),
+            AllowedFilter::exact('bill_category'),
 
         ];
     }

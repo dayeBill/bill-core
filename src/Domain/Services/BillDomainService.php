@@ -38,18 +38,19 @@ class BillDomainService
             throw new ContactException('事件不存在', 204401);
         }
 
-        $bill             = Bill::make();
-        $bill->owner      = $data->owner;
-        $bill->bill_type  = $data->billType;
-        $bill->contact_id = $data->contactId ?? null;
-        $bill->event_id   = $data->eventId ?? null;
-        $bill->bill_time  = $data->billTime;
-        $bill->amount     = $data->amount;
-        $bill->subject    = $data->subject ?? null;
-        $bill->remarks    = $data->remarks ?? null;
-        $bill->payee_type = $data->payeeType ?? null;
-        $bill->payee_id   = $data->payeeId ?? null;
-        $bill->pay_method = $data->payMethod ?? null;
+        $bill                = Bill::make();
+        $bill->owner         = $data->owner;
+        $bill->bill_type     = $data->billType;
+        $bill->bill_category = $data->billCategory;
+        $bill->contact_id    = $data->contactId ?? null;
+        $bill->event_id      = $data->eventId ?? null;
+        $bill->bill_time     = $data->billTime;
+        $bill->amount        = $data->amount;
+        $bill->subject       = $data->subject ?? null;
+        $bill->remarks       = $data->remarks ?? null;
+        $bill->payee_type    = $data->payeeType ?? null;
+        $bill->payee_id      = $data->payeeId ?? null;
+        $bill->pay_method    = $data->payMethod ?? null;
 
 
         return $bill;
