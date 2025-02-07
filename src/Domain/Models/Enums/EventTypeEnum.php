@@ -8,6 +8,24 @@ enum EventTypeEnum: string
 {
     use EnumsHelper;
 
+    public static function colors() : array
+    {
+
+        // 'success',
+        //     'danger',
+        //     'primary',
+        //     'warning',
+        return [
+            self::MARRY->value        => 'danger',
+            self::BIRTHDAY->value     => 'danger',
+            self::DEATH->value        => 'warning',
+            self::GRADUATE->value     => 'warning',
+            self::FULL_MOON->value    => 'success',
+            self::HOUSEWARMING->value => 'success',
+            self::OTHER->value        => 'primary',
+        ];
+    }
+
     // 结婚、生日、离世、升学、满月、周岁、乔迁、其他
     case MARRY = 'marry';
     case BIRTHDAY = 'birthday';

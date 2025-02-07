@@ -5,6 +5,7 @@ namespace DayeBill\BillCore\UI\Http\Controllers;
 use DayeBill\BillCore\Application\Services\Event\EventCommandService;
 use DayeBill\BillCore\Application\Services\Event\EventQueryService;
 use DayeBill\BillCore\Domain\Data\EventData as Data;
+use DayeBill\BillCore\Domain\Models\Enums\EventTypeEnum;
 use DayeBill\BillCore\Domain\Models\Event as Model;
 use DayeBill\BillCore\UI\Http\Requests\EventRequest as Request;
 use DayeBill\BillCore\UI\Http\Resources\EventResource as Resource;
@@ -43,5 +44,16 @@ class EventController extends Controller
     public function update($id, Request $request)
     {
         return $this->coreUpdate($id, $request);
+    }
+
+
+    public function options(\Illuminate\Http\Request $request)
+    {
+
+        $data = [];
+
+        $data['eventTypes'] = EventTypeEnum::lists();
+
+        return static::success($data);
     }
 }
