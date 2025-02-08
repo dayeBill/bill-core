@@ -26,6 +26,7 @@ class BillResource extends JsonResource
             'payee_id'        => $this->payee_id,
             'pay_method'      => $this->pay_method,
             'bill_time'       => $this->bill_time?->format('Y-m-d H:i:s'),
+            'subject'         => $this->subject,
             'remarks'         => $this->remarks,
             'created_at'      => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at'      => $this->updated_at?->format('Y-m-d H:i:s'),

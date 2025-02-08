@@ -16,6 +16,23 @@ enum ContactRelationTypeEnum: string
     case LEADER = 'leader';
     case OTHER = 'other';
 
+    public static function colors() : array
+    {
+        return [
+            self::CLASSMATE->value => 'success',//'同学',
+            self::FRIEND->value    => 'danger',//'朋友',
+            self::COLLEAGUE->value => 'primary',//'同事',
+            self::LEADER->value    => 'warning',//'领导',
+            self::RELATIVE->value  => 'warning',//'亲戚',
+            self::OTHER->value     => 'primary',//'其他',
+        ];
+
+        // 'success',
+        //     'danger',
+        //     'primary',
+        //     'warning',
+    }
+
     public static function labels() : array
     {
         return [
