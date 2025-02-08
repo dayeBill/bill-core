@@ -40,6 +40,11 @@ class BillController extends Controller
 
     public function store(Request $request)
     {
+        $billTime = $request->input('bill_time');
+        // 判断时间是否有时分秒
+        if (!str_contains($billTime, ':')) {
+            $request->offsetSet('bill_time', $billTime.' '.date('H:i:s'));
+        }
 
         return $this->coreStore($request);
     }

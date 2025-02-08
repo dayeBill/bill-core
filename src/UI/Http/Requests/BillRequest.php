@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BillRequest extends FormRequest
 {
-    public function rules():array
+    public function rules() : array
     {
         return [
             'event_id'        => ['nullable', 'integer'],
@@ -17,7 +17,7 @@ class BillRequest extends FormRequest
             'payee_type'      => ['nullable'],
             'payee_id'        => ['nullable'],
             'pay_method'      => ['nullable'],
-            'bill_time'       => ['required', 'date'],
+            'bill_time'       => ['required',],
             'remarks'         => ['nullable'],
         ];
     }
