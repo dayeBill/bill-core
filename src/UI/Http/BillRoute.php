@@ -13,6 +13,7 @@ class BillRoute
     public static function route() : void
     {
 
+        Route::get('bills/summary', [BillController::class, 'summary'])->name('bill.bills.summary');
         Route::get('bills/options', [BillController::class, 'options'])->name('bill.bills.options');
         Route::resource('bills', BillController::class)->names('bill.bills');
         Route::get('events/options', [EventController::class, 'options'])->name('bill.events.options');

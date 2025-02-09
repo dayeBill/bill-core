@@ -6,10 +6,12 @@ use DayeBill\BillCore\Application\Services\Bill\BillCommandService;
 use DayeBill\BillCore\Application\Services\Bill\BillQueryService;
 use DayeBill\BillCore\Application\Services\Bill\Commands\BillCreateCommand;
 use DayeBill\BillCore\Application\Services\Bill\Queries\BillPaginateQuery;
+use DayeBill\BillCore\Application\Services\Bill\Queries\BillSummaryQuery;
 use DayeBill\BillCore\Domain\Data\BillData as Data;
 use DayeBill\BillCore\Domain\Models\Bill as Model;
 use DayeBill\BillCore\UI\Http\Requests\BillRequest as Request;
 use DayeBill\BillCore\UI\Http\Resources\BillResource as Resource;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use RedJasmine\Support\Http\Controllers\Controller;
 use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
@@ -58,9 +60,34 @@ class BillController extends Controller
     public function options(\Illuminate\Http\Request $request)
     {
 
-        $data               = [];
-        $data['categories'] = Config::get('bill-core.categories', []);
+        $data = [];
+
+        $data['categories'] = Arr::map(Config::get('bill-core.categories', []), function ($item) {
+            return [
+                'label' => $item,
+                'value' => $item,
+                'icon'  => null
+            ];
+        });
+
+        $data['payMethods'] = Arr::map(Config::get('bill-core.pay-methods', []), function ($item) {
+            return [
+                'label' => $item,
+                'value' => $item,
+                'icon'  => null
+            ];
+        });
 
         return static::success($data);
+    }
+
+
+    public function summary(\Illuminate\Http\Request $request)
+    {
+
+
+        $result = $this->queryService->summary(BillSummaryQuery::from($request));
+
+        return static::success($result);
     }
 }

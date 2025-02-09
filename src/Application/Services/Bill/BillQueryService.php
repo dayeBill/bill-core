@@ -2,6 +2,7 @@
 
 namespace DayeBill\BillCore\Application\Services\Bill;
 
+use DayeBill\BillCore\Application\Services\Bill\Queries\BillSummaryQueryHandler;
 use DayeBill\BillCore\Application\Services\Bill\Queries\BillPaginateQuery;
 use DayeBill\BillCore\Domain\Repositories\BillReadRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,11 +15,18 @@ class BillQueryService extends ApplicationQueryService
 
 
     public function __construct(
-        protected BillReadRepositoryInterface $repository
+        public BillReadRepositoryInterface $repository
 
     ) {
     }
 
+
+    protected static $macros = [
+        'findById'       => FindQueryHandler::class,
+        'paginate'       => PaginateQueryHandler::class,
+        'simplePaginate' => SimplePaginateQueryHandler::class,
+        'summary'        => BillSummaryQueryHandler::class
+    ];
 
     public function paginate(BillPaginateQuery $query) : LengthAwarePaginator
     {
@@ -43,7 +51,7 @@ class BillQueryService extends ApplicationQueryService
             AllowedFilter::callback('keyword', static function (Builder $builder, $value) {
                 return $builder->where(function (Builder $builder) use ($value) {
                     $builder->where('bill_category', 'like', '%'.$value.'%')
-                        ->orWhere('subject', 'like', '%'.$value.'%');
+                            ->orWhere('subject', 'like', '%'.$value.'%');
                 });
             }),
 
@@ -57,5 +65,6 @@ class BillQueryService extends ApplicationQueryService
             'event'
         ];
     }
+
 
 }
