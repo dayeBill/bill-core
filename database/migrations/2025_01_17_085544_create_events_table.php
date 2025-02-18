@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->string('type');
             $table->string('subject');
             $table->date('event_date')->nullable();
+            $table->string('color')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

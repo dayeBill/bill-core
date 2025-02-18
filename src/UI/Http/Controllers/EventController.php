@@ -10,6 +10,8 @@ use DayeBill\BillCore\Domain\Models\Event as Model;
 use DayeBill\BillCore\UI\Http\Requests\EventRequest as Request;
 use DayeBill\BillCore\UI\Http\Resources\EventResource as Resource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
 use RedJasmine\Support\Http\Controllers\Controller;
 use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
 use function DayeBill\BillCore\Http\Controllers\response;
@@ -47,13 +49,19 @@ class EventController extends Controller
     }
 
 
-    public function options(\Illuminate\Http\Request $request)
+    public function enums(\Illuminate\Http\Request $request)
     {
 
         $data = [];
 
         $data['eventTypes'] = EventTypeEnum::lists();
-
+        $data['colors']     = Arr::map(Config::get('bill-core.event-colors', []), function ($item) {
+            return [
+                'label' => $item,
+                'value' => $item,
+                'icon'  => null
+            ];
+        });
         return static::success($data);
     }
 }

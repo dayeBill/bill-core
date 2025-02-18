@@ -57,7 +57,7 @@ class BillController extends Controller
     }
 
 
-    public function options(\Illuminate\Http\Request $request)
+    public function enums(\Illuminate\Http\Request $request)
     {
 
         $data = [];

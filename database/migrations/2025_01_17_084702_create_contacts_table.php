@@ -9,10 +9,11 @@ return new class extends Migration {
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
-            $table->string('owner_type',32);
-            $table->string('owner_id',64);
-            $table->index(['owner_id','owner_type',],'idx_owner');
+            $table->string('owner_type', 32);
+            $table->string('owner_id', 64);
+            $table->index(['owner_id', 'owner_type',], 'idx_owner');
             $table->string('name');
+            $table->string('alias')->nullable();
             $table->string('relation_type')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('remarks')->nullable();

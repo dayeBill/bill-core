@@ -33,6 +33,8 @@ class Event extends Model implements OwnerInterface
         'subject',
         'type',
         'event_date',
+        'color',
+        'remarks',
     ];
 
     protected function casts() : array

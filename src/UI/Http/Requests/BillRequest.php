@@ -9,15 +9,15 @@ class BillRequest extends FormRequest
     public function rules() : array
     {
         return [
-            'event_id'        => ['nullable', 'integer'],
-            'contacts_id'     => ['nullable', 'integer'],
             'bill_type'       => ['required'],
             'amount.currency' => ['required'],
             'amount.value'    => ['required', 'integer'],
+            'bill_time'       => ['required',],
+            'event_id'        => ['nullable', 'integer'],
+            'contacts_id'     => ['nullable', 'integer'],
             'payee_type'      => ['nullable'],
             'payee_id'        => ['nullable'],
             'pay_method'      => ['nullable'],
-            'bill_time'       => ['required',],
             'remarks'         => ['nullable'],
         ];
     }

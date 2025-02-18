@@ -14,11 +14,11 @@ class BillRoute
     {
 
         Route::get('bills/summary', [BillController::class, 'summary'])->name('bill.bills.summary');
-        Route::get('bills/options', [BillController::class, 'options'])->name('bill.bills.options');
+        Route::get('bills/enums', [BillController::class, 'enums'])->name('bill.bills.enums');
         Route::resource('bills', BillController::class)->names('bill.bills');
-        Route::get('events/options', [EventController::class, 'options'])->name('bill.events.options');
+        Route::get('events/enums', [EventController::class, 'enums'])->name('bill.events.enums');
         Route::resource('events', EventController::class)->names('bill.events');
-        Route::get('contacts/options', [ContactController::class, 'options'])->name('bill.contacts.options');
+        Route::get('contacts/enums', [ContactController::class, 'enums'])->name('bill.contacts.enums');
         Route::resource('contacts', ContactController::class)->names('bill.contacts');
     }
 

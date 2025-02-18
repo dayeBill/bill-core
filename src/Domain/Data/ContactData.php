@@ -11,6 +11,7 @@ class ContactData extends Data
 
     public UserInterface $owner;
     public string        $name;
+    public ?string        $alias;
     public ?string       $relationType;
     public ?string       $phoneNumber;
     public ?string       $remarks;

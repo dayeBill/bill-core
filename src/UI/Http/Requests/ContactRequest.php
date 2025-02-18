@@ -10,14 +10,15 @@ class ContactRequest extends FormRequest
     {
         return [
 
-            'name'          => ['required'],
-            'relation_type' => ['nullable'],
-            'phone_number'  => ['nullable'],
-            'remarks'       => ['nullable'],
+            'name'          => ['required', 'max:100'],
+            'alias'         => ['nullable', 'sometimes', 'max:100'],
+            'relation_type' => ['nullable', 'sometimes', 'max:100'],
+            'phone_number'  => ['nullable', 'sometimes', 'max:100'],
+            'remarks'       => ['nullable', 'sometimes', 'max:100'],
         ];
     }
 
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }

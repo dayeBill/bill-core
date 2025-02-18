@@ -52,7 +52,11 @@ class BillCreateCommandHandler extends CommandHandler
             return;
         }
 
-        if ($contact = $this->contactReadRepository->findByNameInOwner($command->owner, $command->contact->name)) {
+        if ($contact = $this->contactReadRepository->findByNameInOwner(
+            $command->owner,
+            $command->contact->name,
+            $command->contact->alias
+        )) {
             $command->contactId = $contact->id;
             return;
         }
@@ -61,6 +65,7 @@ class BillCreateCommandHandler extends CommandHandler
         $contactCreateCommand               = new ContactData();
         $contactCreateCommand->owner        = $command->owner;
         $contactCreateCommand->name         = $command->contact->name;
+        $contactCreateCommand->alias        = $command->contact->alias;
         $contactCreateCommand->relationType = $command->contact->relationType;
 
         $contact = $this->contactDomainService->create($contactCreateCommand);

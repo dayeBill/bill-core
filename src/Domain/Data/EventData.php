@@ -16,7 +16,12 @@ class EventData extends Data
 
     public string $subject;
 
-    #[WithCast(DateTimeInterfaceCast::class,'Y-m-d')]
+
+    public ?string $color;
+
+    public ?string $remarks;
+
+    #[WithCast(DateTimeInterfaceCast::class, 'Y-m-d')]
     public ?Carbon $eventDate;
 
     public EventTypeEnum $type = EventTypeEnum::OTHER;

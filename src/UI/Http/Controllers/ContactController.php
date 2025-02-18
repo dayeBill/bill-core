@@ -7,10 +7,11 @@ use DayeBill\BillCore\Application\Services\Contact\ContactCommandService;
 use DayeBill\BillCore\Application\Services\Contact\ContactQueryService;
 use DayeBill\BillCore\Domain\Data\ContactData as Data;
 use DayeBill\BillCore\Domain\Models\Contact as Model;
-use DayeBill\BillCore\Domain\Models\Enums\ContactRelationTypeEnum;
 use DayeBill\BillCore\UI\Http\Requests\ContactRequest as Request;
 use DayeBill\BillCore\UI\Http\Resources\ContactResource as Resource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
 use RedJasmine\Support\Http\Controllers\Controller;
 use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
 
@@ -48,10 +49,17 @@ class ContactController extends Controller
         return $this->coreUpdate($id, $request);
     }
 
-    public function options()
+    public function enums()
     {
-        $data                  = [];
-        $data['relationTypes'] = ContactRelationTypeEnum::lists();
+        $data = [];
+
+        $data['relationTypes'] = Arr::map(Config::get('bill-core.contact-relations', []), function ($item) {
+            return [
+                'label' => $item,
+                'value' => $item,
+                'icon'  => null
+            ];
+        });
         return static::success($data);
     }
 

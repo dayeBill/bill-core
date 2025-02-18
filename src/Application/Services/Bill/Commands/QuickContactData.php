@@ -8,5 +8,6 @@ class QuickContactData extends Data
 {
 
     public string  $name;
+    public ?string  $alias;
     public ?string $relationType;
 }
