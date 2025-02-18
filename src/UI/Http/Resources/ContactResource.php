@@ -22,6 +22,7 @@ class ContactResource extends JsonResource
             'remarks'       => $this->remarks,
             'created_at'    => $this->created_at?->format('Y-m-d'),
             'updated_at'    => $this->updated_at?->format('Y-m-d'),
+            'amounts'       => $this->sumAmounts(),
         ];
     }
 }

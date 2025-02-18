@@ -2,6 +2,7 @@
 
 namespace DayeBill\BillCore\UI\Http\Resources;
 
+use DayeBill\BillCore\Domain\Models\Enums\BillTypeEnum;
 use DayeBill\BillCore\Domain\Models\Event;
 use Illuminate\Http\Request;
 use RedJasmine\Support\UI\Http\Resources\Json\JsonResource;
@@ -23,6 +24,7 @@ class EventResource extends JsonResource
             'event_date' => $this->event_date?->format('Y-m-d'),
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d hH:i:s'),
+            'amounts'    => $this->sumAmounts(),
         ];
     }
 }
