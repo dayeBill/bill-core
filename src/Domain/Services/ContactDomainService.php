@@ -26,18 +26,18 @@ class ContactDomainService
     public function create(ContactData $data) : Contact
     {
 
-        if ($this->readRepository->findByNameInOwner($data->owner, $data->name,$data->alias)) {
+        if ($this->readRepository->findByNameInOwner($data->owner, $data->name, $data->alias)) {
             throw new ContactException('联系人已存在,请修改姓名或者重名备注！');
         }
         // 查询联系人是否存在  如果存在 创建失败
         $contact                = Contact::make();
         $contact->owner         = $data->owner;
         $contact->name          = $data->name;
-        $contact->alias          = $data->alias ?? null;
+        $contact->alias         = $data->alias ?? null;
         $contact->relation_type = $data->relationType ?? null;
         $contact->phone_number  = $data->phoneNumber ?? null;
         $contact->remarks       = $data->remarks ?? null;
-
+        $contact->sort          = $data->sort;
         $this->repository->store($contact);
 
         return $contact;

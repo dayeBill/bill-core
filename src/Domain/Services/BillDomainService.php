@@ -51,6 +51,7 @@ class BillDomainService
         $bill->payee_type    = $data->payeeType ?? null;
         $bill->payee_id      = $data->payeeId ?? null;
         $bill->pay_method    = $data->payMethod ?? null;
+        $bill->sort          = $data->sort;
 
 
         return $bill;

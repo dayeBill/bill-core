@@ -30,6 +30,7 @@ class BillData extends Data
 
     public ?int $eventId;
     public ?int $contactId;
+    public int  $sort = 0;
 
     #[Max(20)]
     public ?string $subject;

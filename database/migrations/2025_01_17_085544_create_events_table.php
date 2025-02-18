@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->date('event_date')->nullable();
             $table->string('color')->nullable();
             $table->string('remarks')->nullable();
+            $table->bigInteger('sort')->default(0)->comment('排序');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -18,14 +18,12 @@ return new class extends Migration {
             $table->timestamp('bill_time');
             $table->string('amount_currency')->default('CNY');
             $table->bigInteger('amount_value')->default(0);
-
-
             $table->string('payee_type')->nullable();
             $table->string('payee_id')->nullable();
             $table->string('pay_method')->nullable();
             $table->string('subject')->nullable();
             $table->string('remarks')->nullable();
-
+            $table->bigInteger('sort')->default(0)->comment('排序');
             $table->unsignedBigInteger('event_id')->nullable();
             $table->unsignedBigInteger('contact_id')->nullable();
             $table->timestamps();

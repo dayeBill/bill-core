@@ -26,4 +26,6 @@ class EventData extends Data
 
     public EventTypeEnum $type = EventTypeEnum::OTHER;
 
+    public int  $sort = 0;
+
 }

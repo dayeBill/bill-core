@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('relation_type')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('remarks')->nullable();
+            $table->bigInteger('sort')->default(0)->comment('排序');
             $table->timestamps();
             $table->softDeletes();
         });

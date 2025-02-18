@@ -15,6 +15,7 @@ class ContactData extends Data
     public ?string       $relationType;
     public ?string       $phoneNumber;
     public ?string       $remarks;
+    public int  $sort = 0;
 
 
 
