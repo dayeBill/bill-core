@@ -10,11 +10,11 @@ class BillRequest extends FormRequest
     {
         return [
             'bill_type'       => ['required'],
-            'amount.currency' => ['required'],
-            'amount.value'    => ['required', 'integer'],
+            'amount.currency' => ['sometimes'],
+            'amount.value'    => ['required',],
             'bill_time'       => ['required',],
-            'event_id'        => ['nullable', 'integer'],
-            'contacts_id'     => ['nullable', 'integer'],
+            'event_id'        => ['nullable', 'sometimes', 'integer'],
+            'contacts_id'     => ['nullable', 'sometimes', 'integer'],
             'payee_type'      => ['nullable'],
             'payee_id'        => ['nullable'],
             'pay_method'      => ['nullable'],

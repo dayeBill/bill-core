@@ -16,7 +16,7 @@ trait SumAmounts
 
         $summary = Arr::pluck($summary, 'amount_value', 'bill_type');
         foreach (BillTypeEnum::values() as $value) {
-            $summary[$value] = (int) ($summary[$value] ?? 0);
+            $summary[$value] = (string) ($summary[$value] ?? 0);
         }
         return $summary;
     }
