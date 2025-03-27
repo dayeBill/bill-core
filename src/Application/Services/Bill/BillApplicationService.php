@@ -27,7 +27,7 @@ class BillApplicationService extends ApplicationService
 
     protected static string $modelClass = Bill::class;
 
-    public static string $hookNamePrefix = 'bill-core.application.bill.command';
+    public static string $hookNamePrefix = 'bill-core.application.bill';
 
     protected static $macros = [
         'create'  => BillCreateCommandHandler::class,
