@@ -1,7 +1,7 @@
 <?php
 
 
-use DayeBill\BillCore\Application\Services\Bill\BillCommandService;
+use DayeBill\BillCore\Application\Services\Bill\BillApplicationService;
 use DayeBill\BillCore\Application\Services\Bill\Commands\BillCreateCommand;
 use DayeBill\BillCore\Application\Services\Bill\Commands\QuickContactData;
 use DayeBill\BillCore\Domain\Models\Enums\BillTypeEnum;
@@ -14,7 +14,7 @@ beforeEach(function () {
     // 创建联系人
     // 创建事件
 
-    $this->commandService = app(BillCommandService::class);
+    $this->BillApplicationService = app(BillApplicationService::class);
 
 });
 
@@ -34,7 +34,7 @@ test('can create a bill', function () {
     );
 
 
-    $bill = $this->commandService->create($command);
+    $bill = $this->BillApplicationService->create($command);
 
     $this->assertEquals($command->billType->value, $bill->bill_type->value);
 

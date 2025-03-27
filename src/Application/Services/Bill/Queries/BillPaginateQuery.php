@@ -7,7 +7,9 @@ use RedJasmine\Support\Domain\Data\Queries\PaginateQuery;
 class BillPaginateQuery extends PaginateQuery
 {
 
-    public ?int $eventId;
+    public mixed $include = ['event', 'contact'];
+
+    public ?int  $eventId;
 
     public ?int $contactId;
 

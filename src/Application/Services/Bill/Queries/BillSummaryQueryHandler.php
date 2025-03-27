@@ -2,16 +2,16 @@
 
 namespace DayeBill\BillCore\Application\Services\Bill\Queries;
 
-use DayeBill\BillCore\Application\Services\Bill\BillQueryService;
+use DayeBill\BillCore\Application\Services\Bill\BillApplicationService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use RedJasmine\Support\Application\QueryHandlers\QueryHandler;
+use RedJasmine\Support\Application\Queries\QueryHandler;
 
 class BillSummaryQueryHandler extends QueryHandler
 {
 
     public function __construct(
-        protected BillQueryService $service
+        protected BillApplicationService $service
 
     ) {
     }
@@ -19,7 +19,7 @@ class BillSummaryQueryHandler extends QueryHandler
 
     public function handle(BillSummaryQuery $query) : array
     {
-        $repository = $this->service->repository;
+        $repository = $this->service->readRepository;
 
 
         $query = $repository->query($query->except('month'))

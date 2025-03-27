@@ -3,20 +3,25 @@
 namespace DayeBill\BillCore\Application\Services\Bill;
 
 use DayeBill\BillCore\Application\Services\Bill\Commands\BillCreateCommandHandler;
+use DayeBill\BillCore\Application\Services\Bill\Queries\BillSummaryQuery;
+use DayeBill\BillCore\Application\Services\Bill\Queries\BillSummaryQueryHandler;
 use DayeBill\BillCore\Domain\Models\Bill;
+use DayeBill\BillCore\Domain\Repositories\BillReadRepositoryInterface;
 use DayeBill\BillCore\Domain\Repositories\BillRepositoryInterface;
-use RedJasmine\Support\Application\ApplicationCommandService;
+use RedJasmine\Support\Application\ApplicationService;
 use RedJasmine\Support\Application\CommandHandlers\DeleteCommandHandler;
 
 /**
  * @see BillCreateCommandHandler::handle()
  * @method Bill create(BillCreateCommand $command)
+ * @method array summary(BillSummaryQuery $command)
  */
-class BillCommandService extends ApplicationCommandService
+class BillApplicationService extends ApplicationService
 {
 
     public function __construct(
-        public BillRepositoryInterface $repository
+        public BillRepositoryInterface $repository,
+        public BillReadRepositoryInterface $readRepository
     ) {
     }
 
@@ -25,8 +30,9 @@ class BillCommandService extends ApplicationCommandService
     public static string $hookNamePrefix = 'bill-core.application.bill.command';
 
     protected static $macros = [
-        'create' => BillCreateCommandHandler::class,
-        'delete' => DeleteCommandHandler::class
+        'create'  => BillCreateCommandHandler::class,
+        'update'  => null,
+        'summary' => BillSummaryQueryHandler::class
     ];
 
 

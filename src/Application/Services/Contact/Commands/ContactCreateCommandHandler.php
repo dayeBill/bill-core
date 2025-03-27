@@ -2,10 +2,10 @@
 
 namespace DayeBill\BillCore\Application\Services\Contact\Commands;
 
-use DayeBill\BillCore\Application\Services\Contact\ContactCommandService;
+use DayeBill\BillCore\Application\Services\Contact\ContactApplicationService;
 use DayeBill\BillCore\Domain\Models\Contact;
 use DayeBill\BillCore\Domain\Services\ContactDomainService;
-use RedJasmine\Support\Application\CommandHandler;
+use RedJasmine\Support\Application\Commands\CommandHandler;
 use RedJasmine\Support\Exceptions\AbstractException;
 use Throwable;
 
@@ -13,7 +13,7 @@ class ContactCreateCommandHandler extends CommandHandler
 {
 
     public function __construct(
-        protected ContactCommandService $service,
+        protected ContactApplicationService $service,
         protected ContactDomainService $domainService,
 
 

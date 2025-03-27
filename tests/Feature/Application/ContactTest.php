@@ -1,7 +1,7 @@
 <?php
 
 
-use DayeBill\BillCore\Application\Services\Contact\ContactCommandService;
+use DayeBill\BillCore\Application\Services\Contact\ContactApplicationService;
 use DayeBill\BillCore\Domain\Data\ContactData;
 use DayeBill\BillCore\Domain\Models\Contact;
 use DayeBill\BillCore\Domain\Models\Enums\ContactRelationTypeEnum;
@@ -14,7 +14,7 @@ test('can create  a contact', function () {
     $command->name         = fake()->name();
     $command->phoneNumber  = fake()->phoneNumber();
     $command->remarks      = fake()->text();
-    $contact               = app(ContactCommandService::class)->create($command);
+    $contact               = app(ContactApplicationService::class)->create($command);
 
 
     $this->assertEquals($command->relationType, $contact->relation_type);
@@ -33,7 +33,7 @@ test('can update  a contact', function (Contact $contact) {
     $command->name         = fake()->name();
     $command->phoneNumber  = fake()->phoneNumber();
     $command->remarks      = fake()->text();
-    $contact               = app(ContactCommandService::class)->create($command);
+    $contact               = app(ContactApplicationService::class)->create($command);
 
     $this->assertEquals($command->relationType, $contact->relation_type);
     $this->assertEquals($command->name, $contact->name);

@@ -2,20 +2,19 @@
 
 namespace DayeBill\BillCore\Application\Services\Bill\Commands;
 
-use DayeBill\BillCore\Application\Services\Bill\BillCommandService;
+use DayeBill\BillCore\Application\Services\Bill\BillApplicationService;
 use DayeBill\BillCore\Domain\Data\ContactData;
 use DayeBill\BillCore\Domain\Models\Bill;
 use DayeBill\BillCore\Domain\Repositories\ContactReadRepositoryInterface;
-use DayeBill\BillCore\Domain\Repositories\ContactRepositoryInterface;
 use DayeBill\BillCore\Domain\Services\BillDomainService;
 use DayeBill\BillCore\Domain\Services\ContactDomainService;
-use RedJasmine\Support\Application\CommandHandler;
+use RedJasmine\Support\Application\Commands\CommandHandler;
 use Throwable;
 
 class BillCreateCommandHandler extends CommandHandler
 {
     public function __construct(
-        protected BillCommandService $service,
+        protected BillApplicationService $service,
         protected BillDomainService $billDomainService,
         protected ContactDomainService $contactDomainService,
         public ContactReadRepositoryInterface $contactReadRepository

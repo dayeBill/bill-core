@@ -2,8 +2,7 @@
 
 namespace DayeBill\BillCore\UI\Http\Controllers;
 
-use DayeBill\BillCore\Application\Services\Bill\BillCommandService;
-use DayeBill\BillCore\Application\Services\Bill\BillQueryService;
+use DayeBill\BillCore\Application\Services\Bill\BillApplicationService;
 use DayeBill\BillCore\Application\Services\Bill\Commands\BillCreateCommand;
 use DayeBill\BillCore\Application\Services\Bill\Queries\BillPaginateQuery;
 use DayeBill\BillCore\Application\Services\Bill\Queries\BillSummaryQuery;
@@ -20,11 +19,10 @@ use function DayeBill\BillCore\Http\Controllers\response;
 class BillController extends Controller
 {
     public function __construct(
-        protected BillQueryService $queryService,
-        protected BillCommandService $commandService,
+        protected BillApplicationService $service,
 
     ) {
-        $this->queryService->getRepository()->withQuery(function ($query) {
+        $this->service->readRepository->withQuery(function ($query) {
             $query->onlyOwner($this->getOwner());
         });
     }
@@ -86,7 +84,7 @@ class BillController extends Controller
     {
 
 
-        $result = $this->queryService->summary(BillSummaryQuery::from($request));
+        $result = $this->service->summary(BillSummaryQuery::from($request));
 
         return static::success($result);
     }

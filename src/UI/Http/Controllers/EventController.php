@@ -2,8 +2,7 @@
 
 namespace DayeBill\BillCore\UI\Http\Controllers;
 
-use DayeBill\BillCore\Application\Services\Event\EventCommandService;
-use DayeBill\BillCore\Application\Services\Event\EventQueryService;
+use DayeBill\BillCore\Application\Services\Event\EventApplicationService;
 use DayeBill\BillCore\Domain\Data\EventData as Data;
 use DayeBill\BillCore\Domain\Models\Enums\EventTypeEnum;
 use DayeBill\BillCore\Domain\Models\Event as Model;
@@ -14,7 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use RedJasmine\Support\Http\Controllers\Controller;
 use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
-use function DayeBill\BillCore\Http\Controllers\response;
+
 
 class EventController extends Controller
 {
@@ -22,10 +21,10 @@ class EventController extends Controller
 
 
     public function __construct(
-        protected EventQueryService $queryService,
-        protected EventCommandService $commandService,
+
+        protected EventApplicationService $service,
     ) {
-        $this->queryService->getRepository()->withQuery(function ($query) {
+        $this->service->readRepository->withQuery(function ($query) {
             $query->onlyOwner($this->getOwner());
         });
     }

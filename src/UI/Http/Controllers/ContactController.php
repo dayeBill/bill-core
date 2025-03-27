@@ -3,8 +3,7 @@
 namespace DayeBill\BillCore\UI\Http\Controllers;
 
 use DayeBill\BillCore\Application\Services\Contact\Commands\ContactCreateCommand;
-use DayeBill\BillCore\Application\Services\Contact\ContactCommandService;
-use DayeBill\BillCore\Application\Services\Contact\ContactQueryService;
+use DayeBill\BillCore\Application\Services\Contact\ContactApplicationService;
 use DayeBill\BillCore\Domain\Data\ContactData as Data;
 use DayeBill\BillCore\Domain\Models\Contact as Model;
 use DayeBill\BillCore\UI\Http\Requests\ContactRequest as Request;
@@ -19,10 +18,10 @@ use RedJasmine\Support\UI\Http\Controllers\RestControllerActions;
 class ContactController extends Controller
 {
     public function __construct(
-        protected ContactQueryService $queryService,
-        protected ContactCommandService $commandService,
+
+        protected ContactApplicationService $service,
     ) {
-        $this->queryService->getRepository()->withQuery(function ($query) {
+        $this->service->readRepository->withQuery(function ($query) {
             $query->onlyOwner($this->getOwner());
         });
     }
